@@ -2,6 +2,8 @@
 from autochem import Molecule
 import sys
 
+##### written by tommason14 #####
+
 if len(sys.argv) not in [2,3] or '-h' in sys.argv:
     print(f'Syntax: {sys.argv[0]} xyzfile [output]')
     sys.exit(1)
