@@ -1,0 +1,68 @@
+SCALE_SIGMA 0.985
+
+MONOMERS
+# monomer charge dipole_moment polarizability
+# polarizability is not necessary for fragments without charge and dipole
+#  +/- in name is not necessary
+# cations
+
+# anions
+
+# neutral
+indoledione  0      9.7009        16.677864007369056
+dmso         0      4.5018		7.791131345800413
+etoh         0      1.6637		4.860962314474913
+#ch3cl        0	   2.1502        4.358934892788259
+#acetone      0      3.1551        6.109386737207192
+#propan2ol    0      1.6816	6.637980823955688
+	                   
+# added
+
+DIMERS
+# monomer1 monomer2 COM_distance/Å
+# cation-anion
+
+# cation-neutral
+
+# neutral-anion
+
+# neutral-neutral
+indoledione	dmso		4.67783
+#indoledione	ch3cl		3.52063
+#indoledione	acetone		3.55088
+indoledione	etoh		4.65844
+#indoledione	propan2ol	4.87666
+indoledione indoledione 3.8000
+
+K_SAPT2
+# monomer1 monomer2 k_SAPT2+
+
+# cation-anion
+
+# cation-neutral
+
+# neutral-anion
+
+# neutral-neutral
+indoledione	dmso		0.53764
+#indoledione	acetone		0.79182
+#indoledione	ch3cl		0.86041
+indoledione	etoh		0.61181
+#indoledione	propan2ol	0.61777
+indoledione indoledione 0.93785
+
+ATOMS
+# cation
+#c2c1im   NA CR CW C1 HCR HCW CE C2 H1 C1A
+# anion
+#oac      HCA O2 CTA CO2
+#dca      N3A CZA NZA
+#fsi      FSI SBT NBT OBT
+# neutral
+#C4H10    CT  CS  HC MoS SMo IMG
+etoh	C3H CTO H OH HO
+dmso	OY SZ CSZ H
+indoledione  C00  C01  C02  C03  C04  C05 H06 H07 H08 O08 O09 C0A C0B N0C H0D H0E H0F
+#propan2ol PC00 PC01 PH02 PH03 PH04 PCO5 PH06 PH07 PH08 PO09 PH0A PH0B
+#ch3cl CC00 CCl0 CH02 CH03 CH04
+#acetone AC00 AC01 AH02 AH03 AH04 AO05 AC06 AH07 AH08 AH09

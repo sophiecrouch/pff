@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+#SBATCH --mem=4G
+#SBATCH --gres=gpu:P100:1
+#SBATCH --time=24:00:00
+#SBATCH --partition=gpu,short
+#SBATCH --qos=partner
+
+module purge
+module load openmm-velocity-verlet/.7.4
+
+cwd="$(pwd)"
+gro="$cwd/build/conf.gro"
+psf="$cwd/build/topol.psf"
+prm="$cwd/build/ff.prm"
+
+mkdir -p npt
+cd npt
+time python3 $cwd/run-bulk-damp.py --gro $gro --psf $psf --prm $prm -t 300 --thermostat nose-hoover --barostat iso -p 1 -n 10_000_000 -damp HO H0D >& npt.log
+
+if [[ -f cpt.cpt_10000000 ]]
+then
+  cp cpt.cpt_10000000 npt.cpt
+  mkdir -p ../nvt
+  cd ../nvt
+  time python3 $cwd/run-bulk-damp.py --gro $gro --psf $psf --prm $prm -t 300 --thermostat nose-hoover --barostat no -n 100_000_000 -damp HO H0D --cpt ../npt/npt.cpt >& nvt.log
+fi
